@@ -1,16 +1,11 @@
-import Image from "next/image";
+import TicketBox from "../../components/TicketBox";
 import { request } from "../../lib/data";
 
 export default (props: any) => {
     const {ticket} = props;
 
-    const imgLoader = (img: any) => {
-        return img.src;
-    }
-
     return <>
-        <h1>{ticket.name}</h1>
-        <Image loader={imgLoader} src={ticket.photo.url} width="60" height="60" alt="profile pic"/>
+       <TicketBox data={ticket} />
     </>
 }
 
