@@ -5,4 +5,7 @@ module.exports = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ['media.graphassets.com']
+  }
 }
