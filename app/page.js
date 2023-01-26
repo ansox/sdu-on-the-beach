@@ -3,13 +3,22 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react'
+import { parseCookies } from 'nookies'
 
 const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
+    const cookies = parseCookies()
+    const hasTicket = !!cookies['ticketName'];
+
     const timer = setTimeout(() => {
-      router.push('/welcome');
+      if (hasTicket) {
+        router.push('/main/ticket');
+      }
+      else {
+        router.push('/welcome');
+      }
     }, 2000);
 
     return () => {

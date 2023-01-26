@@ -5,6 +5,7 @@ import StyledButton from '../../components/StyledButton';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { request } from '../../lib/data';
+import { setCookie } from 'nookies';
 
 export default function WelcomePage() {
   async function isTicketValid(code) {
@@ -34,6 +35,10 @@ export default function WelcomePage() {
       const isValid = await isTicketValid(ticket);
 
       if (isValid) {
+        setCookie(null, 'ticketName', ticket.toUpperCase(), {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        });
         localStorage.setItem('name', ticket.toUpperCase());
         router.push(`/main/ticket/${ticket.toUpperCase()}`);
       }

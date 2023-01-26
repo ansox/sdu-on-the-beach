@@ -1,7 +1,30 @@
 import Image from "next/image";
+import { cache } from 'react';
+import { request } from "../lib/data";
 
-export default function TicketBox(props: any) {
-    const { data, ticketId } = props;
+export default async function TicketBox(props: any) {
+    const loadTicketByCode = cache(async (code: string) => {
+        const query = `query Tickets {
+            tickets(where: {code: "${code}"}) {
+              code
+              name
+              photo {
+                url
+              }
+            }
+          }`;
+    
+        const data = await request({query});
+    
+        return data;
+      })
+
+
+    const { ticket } = props;
+
+    const result = await loadTicketByCode(ticket);
+
+    const data = result.tickets[0];
 
     return <section className="w-3/4 mt-10 border border-slate-300 flex justify-between">
         <div className="w-full">
@@ -17,7 +40,7 @@ export default function TicketBox(props: any) {
         </main>
         </div>
         <aside className="flex items-center bg-[#ea6244] ">
-            <p className="text-white font-semibold antialiased" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>{ticketId}</p>
+            <p className="text-white font-semibold antialiased" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>{ticket}</p>
         </aside>
       
     </section>
