@@ -40,7 +40,7 @@ export default function WelcomePage() {
           path: '/',
         });
         localStorage.setItem('name', ticket.toUpperCase());
-        router.push(`/main/ticket/${ticket.toUpperCase()}`);
+        router.push(`/main/ticket/`);
       }
   }
 
