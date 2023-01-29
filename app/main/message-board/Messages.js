@@ -2,8 +2,7 @@ import { request } from '../../../lib/data'
 import { formatDate } from '../../../lib/date_util'
 import MessageBox from './MessageBox';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 10;
+export const revalidate = 0;
 
 export default async function Messages() {
   async function loadMessages() {
