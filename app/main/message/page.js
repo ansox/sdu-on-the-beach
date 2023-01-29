@@ -42,7 +42,7 @@ export default function Message() {
     ev.preventDefault();
     try {
       await sendMessage();
-      router.back();
+      router.push('/main/message-board');
     }
     catch(error) {
       setSending(false);
