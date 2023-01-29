@@ -2,8 +2,6 @@ import { request } from '../../../lib/data'
 import { formatDate } from '../../../lib/date_util'
 import MessageBox from './MessageBox';
 
-export const revalidate = 0;
-
 export default async function Messages() {
   async function loadMessages() {
     const MESSAGES_QUERY = `query Keynotes {
